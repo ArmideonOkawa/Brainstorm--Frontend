@@ -19,7 +19,7 @@ export default class CreateProject extends Component {
     handleSubmit = (e) =>{
         e.preventDefault()
         console.log("done")
-        fetch("http://localhost:4000/projects",{
+        fetch("http://localhost:3001/projects",{
             method: 'POST',
             headers: {
               'Content-Type' : 'application/json',

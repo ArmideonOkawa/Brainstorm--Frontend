@@ -1,17 +1,10 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
 import axios from 'axios'
-import {Switch, Route} from 'react-router-dom'
-import {withRouter, } from 'react-router-dom'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './components/Home'
-import ProjectContainer from './components/ProjectContainer'
-import CreateProject from './components/CreateProject'
 import Login from './Login'
 import Signup from './components/Signup'
-
-
-class App extends React.Component {
-  
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
@@ -19,14 +12,11 @@ class App extends React.Component {
       user: {}
      };
   }
-
-  componentDidMount() {
+componentDidMount() {
     this.loginStatus()
   }
-
-  loginStatus = () => {
-    axios.get('http://localhost:4000/logged_in', 
-    {withCredentials: true})
+loginStatus = () => {
+    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.handleLogin(response)
@@ -36,8 +26,7 @@ class App extends React.Component {
     })
     .catch(error => console.log('api errors:', error))
   }
-
-  handleLogin = (data) => {
+handleLogin = (data) => {
     this.setState({
       isLoggedIn: true,
       user: data.user
@@ -49,31 +38,33 @@ handleLogout = () => {
     user: {}
     })
   }
-
-
-  renderprojectPageType = (routerProps) => {
-    if(routerProps.location.pathname === "/projects"){
-      return<ProjectContainer />
-    }else if(routerProps.location.pathname === "/projects/create"){
-      return<CreateProject addProject={this.props.addProject} />
-    }
-  }
-
-
-  render(){
-   
-  return (
-    <div className="App">
-        <Switch>
-         <Route exact path="/login" component={Login}/>
-         <Route exact path="/signup" component={Signup}/>
-         <Route path="/projects/create" render={this.renderprojectPageType} />
-         <Route path="/projects" render={this.renderprojectPageType} />
-         <Route path="/" exact component={Home} />
-        </Switch>
+render() {
+    return (
+      <div>
+        <BrowserRouter>
+          <Switch>
+            <Route 
+              exact path='/' 
+              render={props => (
+              <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>
+              )}
+            />
+            <Route 
+              exact path='/login' 
+              render={props => (
+              <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+              )}
+            />
+            <Route 
+              exact path='/signup' 
+              render={props => (
+              <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+              )}
+            />
+          </Switch>
+        </BrowserRouter>
       </div>
-  );
+    );
+  }
 }
-}
-
-export default withRouter(App)
+export default App;

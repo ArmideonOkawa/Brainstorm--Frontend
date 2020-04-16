@@ -23,13 +23,13 @@ handleChange = (event) => {
 handleSubmit = (event) => {
     event.preventDefault()
     const {username, email, password} = this.state
-let user = {
+    let user = {
       username: username,
       email: email,
       password: password
     }
     
-    axios.post('http://localhost:4000/login', {user}, {withCredentials: true})
+    axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)
@@ -43,7 +43,7 @@ let user = {
     .catch(error => console.log('api errors:', error))
   };
 redirect = () => {
-    this.props.history.push('/')
+    this.props.history.push('/projects')
   }
 handleErrors = () => {
     return (
