@@ -6,6 +6,9 @@ import {withRouter, } from 'react-router-dom'
 import Home from './components/Home'
 import ProjectContainer from './components/ProjectContainer'
 import CreateProject from './components/CreateProject'
+import Login from './Login'
+import Signup from './components/Signup'
+
 
 class App extends React.Component {
   
@@ -62,8 +65,8 @@ handleLogout = () => {
   return (
     <div className="App">
         <Switch>
-         <Route exact path="/login"/>
-         <Route exact path="/signup" />
+         <Route exact path="/login" component={Login}/>
+         <Route exact path="/signup" component={Signup}/>
          <Route path="/projects/create" render={this.renderprojectPageType} />
          <Route path="/projects" render={this.renderprojectPageType} />
          <Route path="/" exact component={Home} />
