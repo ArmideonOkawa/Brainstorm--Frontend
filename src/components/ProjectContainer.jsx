@@ -10,7 +10,7 @@ export default class ProjectContainer extends Component {
     }
 
     componentDidMount(){
-        fetch("http://localhost:4000/projects")
+        fetch("http://localhost:3001/projects")
         .then(res => res.json())
         .then(data => this.setState({projects: data}))
       
@@ -30,7 +30,7 @@ export default class ProjectContainer extends Component {
     render(){
         console.log(this.state.projects)
         let lowerCaseDescription = this.state.searchTerm.toLowerCase()
-        let filteredProjects = this.state.projects.filter(t => t.name.toLowerCase().includes(lowerCaseDescription))
+        let filteredProjects = this.state.projects.filter(t => t.title.toLowerCase().includes(lowerCaseDescription))
 
         return(
             <div>

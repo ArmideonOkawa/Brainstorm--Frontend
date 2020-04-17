@@ -36,7 +36,7 @@ export default class MenuExampleSecondary extends Component {
           <Menu.Item
             name='logout'
             active={activeItem === 'logout'}
-            onClick={this.handleItemClick}
+            onClick={this.props.logout}
           />
         </Menu.Menu>
       </Menu>
