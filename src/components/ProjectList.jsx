@@ -2,12 +2,12 @@ import React from 'react'
 import Project from './Project'
 
 const ProjectList = ({projects}) => {
-    const {name, description} = projects
+    const {title, description} = projects
     
     return(
-       <div className='main-container'>
+       <div >
          {projects.map (project => (
-            <Project key={name}
+            <Project key={title}
                     project={project}
                     description={description} />
          ))}

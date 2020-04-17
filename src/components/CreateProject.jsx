@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Container } from 'semantic-ui-react';
+import { Container, Form } from 'semantic-ui-react';
 import Menu from './Menu'
-
 export default class CreateProject extends Component {
     state ={
         title: "",
@@ -10,15 +9,17 @@ export default class CreateProject extends Component {
 
     }
 
+    
     handleChange = e => {
         this.setState({
           [e.target.name]: e.target.value
+
         })
       }
 
     handleSubmit = (e) =>{
         e.preventDefault()
-        console.log("done")
+        
         fetch("http://localhost:3001/projects",{
             method: 'POST',
             headers: {
@@ -28,15 +29,18 @@ export default class CreateProject extends Component {
             body: JSON.stringify(this.state)
           }).then(res => res.json())
             .then(project => this.setState(this.state))
-            console.log(this.state)
+  };
+    redirect = () => {
+      this.props.history.push('/projects')
     }
+ 
     render(){
      return(
       <div>  
        <Menu />
        <Container>
        <div className=".container">
-        <form onSubmit={this.handleSubmit} action="/action_page.php">
+        <Form  onSubmit={this.handleSubmit} action="/action_page.php">
          <div className="row">
          <div className="col-25">
            <label htmlFor="title">Title</label>
@@ -64,7 +68,7 @@ export default class CreateProject extends Component {
            </div>
            </div>
           </div>
-         </form>
+         </Form>
        </div>
        </Container>
       </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css'
+import 'semantic-ui-less/semantic.less'
 import axios from 'axios'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './components/Home'
@@ -7,7 +8,7 @@ import Login from './Login'
 import Signup from './components/Signup'
 import ProjectContainer from './components/ProjectContainer'
 import CreateProject from './components/CreateProject'
-import ProjectList from './components/ProjectList';
+import Note from './components/Note'
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +55,7 @@ render() {
             <Route exact path='/signup' render={props => (<Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>)}/>
             <Route exact path='/projects' render={props => (<ProjectContainer {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} logout={this.handleLogout}/>)}/>
             <Route exact path='/projects/create' render={props => (<CreateProject {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>)}/>
+            <Route exact path='/projects/details' render={Note}/>
           </Switch>
         </BrowserRouter>
       </div>
