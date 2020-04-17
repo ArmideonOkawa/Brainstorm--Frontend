@@ -7,7 +7,6 @@ import Login from './Login'
 import Signup from './components/Signup'
 import ProjectContainer from './components/ProjectContainer'
 import CreateProject from './components/CreateProject'
-import ProjectList from './components/ProjectList';
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +14,6 @@ class App extends Component {
     this.state = { 
       isLoggedIn: false,
       user: {},
-      projects: []
      };
   }
 componentDidMount() {
@@ -52,7 +50,7 @@ render() {
             <Route exact path='/' render={props => (<Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>)}/>
             <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>)}/>
             <Route exact path='/signup' render={props => (<Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>)}/>
-            <Route exact path='/projects' render={props => (<ProjectContainer {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} logout={this.handleLogout}/>)}/>
+            <Route exact path='/{this.state.user}/projects' render={props => (<ProjectContainer {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} logout={this.handleLogout}/>)}/>
             <Route exact path='/projects/create' render={props => (<CreateProject {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>)}/>
           </Switch>
         </BrowserRouter>
