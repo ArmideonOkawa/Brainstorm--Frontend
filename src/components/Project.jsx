@@ -1,24 +1,29 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import { Item, Container, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import Brain from '../brain.png'
+
 
 const Project = ({project}) => {
-    const {name, description} = project
+    const {title, description} = project
 
     console.log(project)
     return(
+      <Container style={{padding:40}}>
     <Item.Group>
       <Item>
-      <Item.Image size='tiny' src='https://react.semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src={Brain}/>
 
       <Item.Content>
-        <Item.Header>{name}</Item.Header>
+        <Item.Header>{title}</Item.Header>
         <Item.Description>
           {description}
         </Item.Description>
-        <Item.Extra>Additional Details</Item.Extra>
+        <Link to='/projects/details'><Button >Add Note</Button></Link>
       </Item.Content>
     </Item>
     </Item.Group>
+    </Container>
     )
 }
 

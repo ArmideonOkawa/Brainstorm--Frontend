@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { Menu}  from 'semantic-ui-react'
-
+import Brain from '../brain.png'
 const Home = (props) => {
 
   const handleClick = () => {
@@ -14,7 +14,7 @@ const Home = (props) => {
     .catch(error => console.log(error))
   }
 return (
-   
+   <div>
     <Menu secondary>
       <Link to='/login'><Menu.Item
         name='login'>Log In</Menu.Item></Link>
@@ -30,6 +30,8 @@ return (
       }
       </Menu.Menu>
     </Menu >
+    <div className="home-img"><img src={Brain} alt=""/></div>
+    </div>
   );
 };
 export default Home;

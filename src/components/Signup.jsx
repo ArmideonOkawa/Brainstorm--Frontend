@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import { Button, Form, Grid, Header,  Message, Segment } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -59,47 +60,63 @@ render() {
     const {username, email, password, password_confirmation} = this.state
 return (
       <div>
-        <h1>Sign Up</h1>
-       <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="username"
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          />
-          <input
-            placeholder="email"
-            type="text"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          />
-          <input 
+  <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid.Column style={{ maxWidth: 450 }}>
+      <Header as='h2' color='teal' textAlign='center'>
+         Register for a new account
+      </Header>
+      <Form size='large' onSubmit={this.handleSubmit}>
+        <Segment stacked>
+          <Form.Input 
+          fluid icon='user' 
+          type="text"
+          name="username"
+          value={username}
+          onChange={this.handleChange}
+          iconPosition='left' 
+          placeholder='Username' />
+
+          <Form.Input  
+          type="email"
+          name="email"
+          value={email}
+          onChange={this.handleChange}
+          iconPosition='left' 
+          placeholder='email' />
+
+          <Form.Input
+            fluid icon="lock"
+            iconPosition="left"
             placeholder="password"
             type="password"
             name="password"
             value={password}
             onChange={this.handleChange}
           />
-          <input
-            placeholder="password confirmation"
+
+          <Form.Input
+            fluid icon="lock"
+            iconPosition="left"
+            placeholder="password_confirmation"
             type="password"
             name="password_confirmation"
             value={password_confirmation}
             onChange={this.handleChange}
           />
-        
-          <button placeholder="submit" type="submit">
-            Sign Up
-          </button>
-      
-        </form>
-        <div>
-          {
-            this.state.errors ? this.handleErrors() : null
-          }
-        </div>
+
+          <Button color='teal' fluid size='large'>
+            Register
+          </Button>
+        </Segment>
+      </Form>
+      {
+          this.state.errors ? this.handleErrors() : null
+      }
+      <Message>
+        Already have an account? <Link to="/login">Log in</Link>
+      </Message>
+    </Grid.Column>
+  </Grid>
       </div>
     );
   }
