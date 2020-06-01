@@ -8,10 +8,7 @@ import Login from './Login'
 import Signup from './components/Signup'
 import ProjectContainer from './components/ProjectContainer'
 import CreateProject from './components/CreateProject'
-<<<<<<< HEAD
-=======
 import Note from './components/Note'
->>>>>>> tester
 
 class App extends Component {
   constructor(props) {
