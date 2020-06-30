@@ -28,9 +28,9 @@ export default class ProjectContainer extends Component {
         this.setState({ projects: [...this.state.projects, project]})
     }
     render(){
-        console.log(this.state.projects)
+        console.log("done")
         let lowerCaseDescription = this.state.searchTerm.toLowerCase()
-        let filteredProjects = this.state.projects.filter(t => t.title.toLowerCase().includes(lowerCaseDescription))
+        let filteredProjects = this.state.projects.filter(t => t.name.toLowerCase().includes(lowerCaseDescription))
 
         return(
             <div>

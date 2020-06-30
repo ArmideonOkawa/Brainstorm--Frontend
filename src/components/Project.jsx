@@ -5,9 +5,9 @@ import Brain from '../brain.png'
 
 
 const Project = ({project}) => {
-    const {title, description} = project
+    const {name, description} = project
 
-    console.log(project)
+   
     return(
       <Container style={{padding:40}}>
     <Item.Group>
@@ -15,7 +15,7 @@ const Project = ({project}) => {
       <Item.Image size='tiny' src={Brain}/>
 
       <Item.Content>
-        <Item.Header>{title}</Item.Header>
+        <Item.Header>{name}</Item.Header>
         <Item.Description>
           {description}
         </Item.Description>
