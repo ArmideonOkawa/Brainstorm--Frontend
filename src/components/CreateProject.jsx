@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Container, Form } from 'semantic-ui-react';
 import Menu from './Menu'
+
 export default class CreateProject extends Component {
     state ={
         title: "",
         logline: "",
         description: "",
-
+        complete: false,
+        catergory: ""
     }
 
     
