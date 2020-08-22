@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css'
 import 'semantic-ui-less/semantic.less'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {withRouter, Switch, Route} from 'react-router-dom'
 import Home from './components/Home'
 import Login from './Login'
 import Signup from './components/Signup'
@@ -11,7 +11,11 @@ import ProjectContainer from './components/ProjectContainer'
 class App extends React.Component {
  
     state = { 
-      user: {},
+      user: {
+        username: "",
+        password: "",
+        email: ""
+      },
       token: "",
       isLoggedIn: false
      };
@@ -23,7 +27,7 @@ componentDidMount() {
    if(localStorage.token){
      fetch("http://localhost:3001/persist", {
        headers: {
-         "Authorization": `bearer ${localstorage.token}`
+         "Authorization": `bearer ${localStorage.token}`
        }
      })
      .then(r => r.json())
@@ -49,7 +53,7 @@ handleLoginSubmit = (userInfo) => {
   console.log("Login form has been submitted")
 
   fetch("http://localhost:3001/login", {
-    mothod: "POST",
+    method: "POST",
     headers: {
       'content-type': 'application/json'
     },
@@ -81,19 +85,26 @@ logSomeoneOut = () => {
   })
 }
 
+
+//RENDER ROUTING FUNCTIONS
+handleLogin = (routerProps) => {
+  if(routerProps.location.pathname === '/login'){
+    return <Login formName="Sign In" handleSubmit={this.handleLoginSubmit}/>
+  }else if (routerProps.location.pathname === "/register"){
+    return <Signup userinfo={this.state.user} formName="Register Form" handleSubmit={this.handleRegisterSubmit}/>
+  }
+}
+
+
 render() {
     return (
       <div>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path='/' render={props => (<Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>)}/>
-            <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>)}/>
-            <Route exact path='/signup' render={props => (<Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>)}/>
-            <Route exact path='/projects' render={props => (<ProjectContainer {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} logout={this.handleLogout}/>)}/>
-          </Switch>
-        </BrowserRouter>
+      <Switch>
+        <Route exact path='/' render={Home} />
+        <Route exact path='/login' render={this.handleLogin}/>
+      </Switch>
       </div>
     );
   }
 }
-export default App;
+export default withRouter(App);
