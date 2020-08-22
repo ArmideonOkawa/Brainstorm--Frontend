@@ -3,6 +3,7 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { Menu}  from 'semantic-ui-react'
 import Brain from '../brain.png'
+
 const Home = (props) => {
 
   const handleClick = () => {
