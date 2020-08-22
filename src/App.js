@@ -90,7 +90,7 @@ logSomeoneOut = () => {
 handleLogin = (routerProps) => {
   if(routerProps.location.pathname === '/login'){
     return <Login formName="Sign In" handleSubmit={this.handleLoginSubmit}/>
-  }else if (routerProps.location.pathname === "/register"){
+  }else if (routerProps.location.pathname === "/signup"){
     return <Signup userinfo={this.state.user} formName="Register Form" handleSubmit={this.handleRegisterSubmit}/>
   }
 }
@@ -102,6 +102,7 @@ render() {
       <Switch>
         <Route exact path='/' render={Home} />
         <Route exact path='/login' render={this.handleLogin}/>
+        <Route exact path='/signup' render={this.handleLogin}/>
       </Switch>
       </div>
     );
