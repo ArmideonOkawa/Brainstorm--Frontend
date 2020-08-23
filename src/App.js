@@ -5,7 +5,6 @@ import {withRouter, Switch, Route} from 'react-router-dom'
 import Home from './components/Home'
 import Login from './Login'
 import Signup from './components/Signup'
-import ProjectContainer from './components/ProjectContainer'
 
 
 class App extends React.Component {
@@ -43,15 +42,13 @@ handleResponse = (resp) => {
         token: resp.token,
         isLoggedIn: true
       }, () => {
-        this.props.history.push("/projects")
+        this.props.history.push("/dashboard")
       })
     }
 
 }
 
 handleLoginSubmit = (userInfo) => {
-  console.log("Login form has been submitted")
-
   fetch("http://localhost:3001/login", {
     method: "POST",
     headers: {

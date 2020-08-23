@@ -6,14 +6,7 @@ import Brain from '../brain.png'
 
 const Home = (props) => {
 
-  const handleClick = () => {
-    axios.delete('http://localhost:3001/logout', {withCredentials: true})
-    .then(response => {
-      props.handleLogout()
-      props.history.push('/')
-    })
-    .catch(error => console.log(error))
-  }
+  
 return (
    <div>
     <Menu secondary>
