@@ -5,7 +5,7 @@ import {withRouter, Switch, Route} from 'react-router-dom'
 import Home from './components/Home'
 import Login from './Login'
 import Signup from './components/Signup'
-
+import ProjectContainer from './components/ProjectContainer'
 
 class App extends React.Component {
  
@@ -18,6 +18,7 @@ class App extends React.Component {
       token: "",
       isLoggedIn: false
      };
+
 
 
 
@@ -42,11 +43,12 @@ handleResponse = (resp) => {
         token: resp.token,
         isLoggedIn: true
       }, () => {
-        this.props.history.push("/dashboard")
+        this.props.history.push(`/${this.state.user.username}/dashboard`)
       })
     }
 
 }
+
 
 handleLoginSubmit = (userInfo) => {
   fetch("http://localhost:3001/login", {
@@ -100,6 +102,7 @@ render() {
         <Route exact path='/' render={Home} />
         <Route exact path='/login' render={this.handleLogin}/>
         <Route exact path='/signup' render={this.handleLogin}/>
+        <Route exact path='/dashboard' component={ProjectContainer}/>   
       </Switch>
       </div>
     );

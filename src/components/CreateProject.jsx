@@ -5,9 +5,7 @@ import Menu from './Menu'
 export default class CreateProject extends Component {
     state ={
         title: "",
-        logline: "",
         description: "",
-        complete: false,
         catergory: ""
     }
 
